@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Requester - Test Your APIs</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-bolt"></i>
+                <h1>API Requester</h1>
+            </div>
+            <div class="theme-toggle">
+                <button id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </header>
+
+        <main>
+            <div class="request-section">
+                <div class="method-selector">
+                    <select id="methodSelect">
+                        <option value="GET">GET</option>
+                        <option value="POST">POST</option>
+                        <option value="PUT">PUT</option>
+                        <option value="DELETE">DELETE</option>
+                        <option value="PATCH">PATCH</option>
+                        <option value="HEAD">HEAD</option>
+                        <option value="OPTIONS">OPTIONS</option>
+                    </select>
+                </div>
+                
+                <div class="url-input-container">
+                    <input type="text" id="urlInput" placeholder="Enter API endpoint URL..." value="https://jsonplaceholder.typicode.com/posts/1">
+                </div>
+                
+                <button id="sendRequest" class="send-btn">
+                    <i class="fas fa-paper-plane"></i>
+                    Send
+                </button>
+            </div>
+
+            <div class="tabs">
+                <div class="tab active" data-tab="params">Params</div>
+                <div class="tab" data-tab="headers">Headers</div>
+                <div class="tab" data-tab="body">Body</div>
+                <div class="tab" data-tab="auth">Auth</div>
+            </div>
+
+            <div class="tab-content">
+                <div id="paramsTab" class="tab-pane active">
+                    <div class="params-container">
+                        <div class="param-row">
+                            <input type="text" class="param-key" placeholder="Key">
+                            <input type="text" class="param-value" placeholder="Value">
+                            <button class="remove-param"><i class="fas fa-times"></i></button>
+                        </div>
+                    </div>
+                    <button id="addParam" class="add-btn">
+                        <i class="fas fa-plus"></i>
+                        Add Parameter
+                    </button>
+                </div>
+
+                <div id="headersTab" class="tab-pane">
+                    <div class="headers-container">
+                        <div class="header-row">
+                            <input type="text" class="header-key" placeholder="Header">
+                            <input type="text" class="header-value" placeholder="Value">
+                            <button class="remove-header"><i class="fas fa-times"></i></button>
+                        </div>
+                    </div>
+                    <button id="addHeader" class="add-btn">
+                        <i class="fas fa-plus"></i>
+                        Add Header
+                    </button>
+                </div>
+
+                <div id="bodyTab" class="tab-pane">
+                    <div class="body-options">
+                        <label>
+                            <input type="radio" name="bodyType" value="none" checked> None
+                        </label>
+                        <label>
+                            <input type="radio" name="bodyType" value="json"> JSON
+                        </label>
+                        <label>
+                            <input type="radio" name="bodyType" value="form"> Form
+                        </label>
+                        <label>
+                            <input type="radio" name="bodyType" value="text"> Text
+                        </label>
+                    </div>
+                    <textarea id="bodyContent" placeholder="Enter request body here..." style="display: none;"></textarea>
+                    <div id="jsonEditor" class="json-editor" style="display: none;">
+                        <pre><code>{
+  "userId": 1,
+  "id": 1,
+  "title": "delectus aut autem",
+  "completed": false
+}</code></pre>
+                    </div>
+                </div>
+
+                <div id="authTab" class="tab-pane">
+                    <div class="auth-options">
+                        <label>
+                            <input type="radio" name="authType" value="none" checked> No Auth
+                        </label>
+                        <label>
+                            <input type="radio" name="authType" value="bearer"> Bearer Token
+                        </label>
+                        <label>
+                            <input type="radio" name="authType" value="basic"> Basic Auth
+                        </label>
+                        <label>
+                            <input type="radio" name="authType" value="api-key"> API Key
+                        </label>
+                    </div>
+                    <div id="authFields" style="display: none;">
+                        <input type="text" id="authValue" placeholder="Token/Key value">
+                    </div>
+                </div>
+            </div>
+
+            <div class="response-section">
+                <div class="response-header">
+                    <h3>Response</h3>
+                    <div class="response-info">
+                        <span id="responseStatus">Status: -</span>
+                        <span id="responseTime">Time: -</span>
+                        <span id="responseSize">Size: -</span>
+                    </div>
+                </div>
+                <div class="response-content">
+                    <pre id="responseBody">{"message": "Send a request to see the response here..."}</pre>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
